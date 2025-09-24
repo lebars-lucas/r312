@@ -30,7 +30,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22002
+        port: 22037
         source: "dist/*"
         target: "/var/www/r312/"
         strip_components: 1
@@ -43,9 +43,9 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: 22002
+        port: 22037
         script: |
           cd /var/www/r312/server
           npm ci
           npm install send server-destroy
-          pm2 start -f entry.mjs
+          PORT=8082 pm2 start -f entry.mjs
